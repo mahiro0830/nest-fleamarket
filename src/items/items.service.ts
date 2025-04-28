@@ -5,8 +5,16 @@ import { Item } from './items.model';
 export class ItemsService {
   private items: Item[] = [];
 
-  findAll() {
-    return "This is ItemsService";
+  findAll(): Item[] {
+    return this.items;
+  }
+
+  findById(id: string): Item {
+    const item = this.items.find(item => item.id === id);
+    if (!item) {
+      throw new Error('商品が存在しません');
+    }
+    return item;
   }
 
   create(item: Item): Item {
